@@ -45,7 +45,7 @@ downloader.fromCSV(
     'myFile.csv',
     'outputDir',
     {
-        jaar: 2016,
+        year: 2016,
         urlColumn: 'urlPdf',
         fileNameColumns: ['score', 'name']
     });

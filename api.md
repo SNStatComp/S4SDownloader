@@ -70,6 +70,5 @@ Download files mentioned in [csvFile](csvFile) and save them in [destDir](destDi
 
 | Type | Description |
 | --- | --- |
-| <code>string</code> | The url |
-| <code>string</code> | The error message |
+| <code>string</code> | error message |
 

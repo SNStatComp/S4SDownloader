@@ -79,8 +79,7 @@ class Download extends EventEmitter {
         /**
          * @event Download#error
          * @type {object}
-         * @property {string} - The url
-         * @property {string} - The error message
+         * @property {string} - error message
          */
         var self = this;
         var EXCEL_CSV_NL = {
