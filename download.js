@@ -9,12 +9,26 @@ var sanitize = require('sanitize-filename');
 var mime = require('mime');
 var EventEmitter = require('events');
 
+/**
+ *@classdesc Save files downloaded from the web
+ *@extends EventEmitter
+ */
 class Download extends EventEmitter {
-
+     /**
+      *Create instance of class Download
+      *@constructor
+      *@param {none}
+      */
     constructor() {
         super()
     }
 
+    /**
+     * Download file from url and save to fileName
+     * @param  {string}         url      - The url of the file to be downloaded
+     * @param  {string}         fileName - The name of the file to save to (without extension).
+     * @return {Promise|string}            The name of the saved file
+     */
     fromURL(url, fileName) {
         return new Promise(
             function(resolve, reject) {
@@ -28,27 +42,46 @@ class Download extends EventEmitter {
                         Promise.all([header]).then(
                             function(value, reason) {
                                 var ext = mime.extension(value[0]['content-type']);
-                                fs.writeFileSync(fileName + '.' + ext, result);
-                                resolve(url);
+                                fileName = fileName + '.' + ext;
+                                fs.writeFileSync(fileName, result);
+                                resolve(fileName);
                             },
                             function(err) {
-                                reject({
-                                    url: url,
-                                    error: err
-                                });
+                                reject({ url: url, error: err });
                             });
                     })
                     .catch(
                         function(err) {
-                            reject({
-                                url: url,
-                                error: err
-                            });
+                            reject({ url: url, error: err });
                         });
             });
     }
 
+    /**
+     * Download files mentioned in {@link csvFile} and save them in {@link destDir}
+     * @param  {string}         csvFile - Name of the csv file
+     * @param  {string}         destDir - Destination directory
+     * @param  {Object}         options
+     * @param  {string}         options.urlColumn - The column name in csvFile containing the url
+     * @param  {Array<string>}  options.filenameColumns - Array of column names in the csvFile to be used as part of the name of the output file
+     * @param  {Object}         [options.format={headers: true, delimiter: ";", rowDelimiter: "\r\n", quoteColumns: true}] - Format of the csv file
+     * @param  {integer}        options.year - Year, used as part of the name of the output file
+     * @param  {integer}        [options.concurrency=1] - Number of concurrent downloads
+     * @fires  Download#success
+     * @fires  Download#error
+     */
     fromCSV(csvFile, destDir, options) {
+        /**
+         * @event Download#success
+         * @type {object}
+         * @property {string} - The url of the downloaded file
+         */
+        /**
+         * @event Download#error
+         * @type {object}
+         * @property {string} - The url
+         * @property {string} - The error message
+         */
         var self = this;
         var EXCEL_CSV_NL = {
             headers: true,
@@ -82,7 +115,7 @@ class Download extends EventEmitter {
                 )
                 var data = {
                     url: record[options.urlColumn],
-                    fileName: destDir + today + '_' + options.jaar + userSelected
+                    fileName: destDir + today + '_' + options.year + userSelected
                 };
                 q.push(data);
             });
