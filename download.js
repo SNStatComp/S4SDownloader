@@ -73,13 +73,11 @@ class Download extends EventEmitter {
     fromCSV(csvFile, destDir, options) {
         /**
          * @event Download#success
-         * @type {object}
-         * @property {string} - The url of the downloaded file
+         * @type {string} - The url of the downloaded file
          */
         /**
          * @event Download#error
-         * @type {object}
-         * @property {string} - error message
+         * @type {string} - Error message
          */
         var self = this;
         var EXCEL_CSV_NL = {

@@ -1,45 +1,46 @@
 <a name="Download"></a>
 
-## Download ⇐ <code>EventEmitter</code>
+## Download
+**Extends:** <code>EventEmitter</code>  
 Save files downloaded from the web
 
-**Kind**: global class  
-**Extends:** <code>EventEmitter</code>  
 
-* [Download](#Download) ⇐ <code>EventEmitter</code>
+* [Download](#Download)
+
     * [new Download()](#new_Download_new)
-    * [.fromURL(url, fileName)](#Download+fromURL) ⇒ <code>Promise</code> &#124; <code>string</code>
+
+    * [.fromURL(url, fileName)](#Download+fromURL)
+
     * [.fromCSV(csvFile, destDir, options)](#Download+fromCSV)
+
     * ["success"](#Download+event_success)
+
     * ["error"](#Download+event_error)
+
 
 <a name="new_Download_new"></a>
 
 ### new Download()
-Create instance of class Download
-
 **Params**
 
 -  <code>none</code>
 
+Create instance of class Download
+
 <a name="Download+fromURL"></a>
 
-### download.fromURL(url, fileName) ⇒ <code>Promise</code> &#124; <code>string</code>
-Download file from url and save to fileName
-
-**Kind**: instance method of <code>[Download](#Download)</code>  
-**Returns**: <code>Promise</code> &#124; <code>string</code> - The name of the saved file  
+### *download*.fromURL(url, fileName)
 **Params**
 
 - url <code>string</code> - The url of the file to be downloaded
 - fileName <code>string</code> - The name of the file to save to (without extension).
 
+Download file from url and save to fileName
+
+**Returns**: <code>Promise</code> &#124; <code>string</code> - The name of the saved file  
 <a name="Download+fromCSV"></a>
 
-### download.fromCSV(csvFile, destDir, options)
-Download files mentioned in [csvFile](csvFile) and save them in [destDir](destDir)
-
-**Kind**: instance method of <code>[Download](#Download)</code>  
+### *download*.fromCSV(csvFile, destDir, options)
 **Emits**: <code>[success](#Download+event_success)</code>, <code>[error](#Download+event_error)</code>  
 **Params**
 
@@ -52,23 +53,15 @@ Download files mentioned in [csvFile](csvFile) and save them in [destDir](destDi
     - .year <code>integer</code> - Year, used as part of the name of the output file
     - [.concurrency] <code>integer</code> <code> = 1</code> - Number of concurrent downloads
 
+Download files mentioned in [csvFile](csvFile) and save them in [destDir](destDir)
+
 <a name="Download+event_success"></a>
 
 ### "success"
-**Kind**: event emitted by <code>[Download](#Download)</code>  
-**Properties**
-
-| Type | Description |
-| --- | --- |
-| <code>string</code> | The url of the downloaded file |
+- The url of the downloaded file
 
 <a name="Download+event_error"></a>
 
 ### "error"
-**Kind**: event emitted by <code>[Download](#Download)</code>  
-**Properties**
-
-| Type | Description |
-| --- | --- |
-| <code>string</code> | error message |
+- Error message
 

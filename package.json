@@ -5,10 +5,10 @@
   "main": "download.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs": "jsdoc2md ./*.js --param-list-format list > api.md"
+    "docs": "jsdoc2md ./*.js -p list -r list --plugin dmd-clear > api.md"
   },
   "author": "Dick Windmeijer",
-  "license": "GPL-3",
+  "license": "GPL-3.0",
   "dependencies": {
     "async": "^2.0.1",
     "download": "^5.0.2",
@@ -17,5 +17,8 @@
     "minimist": "^1.2.0",
     "moment": "^2.15.1",
     "sanitize-filename": "^1.6.1"
+  },
+  "devDependencies": {
+    "dmd-clear": "^0.1.2"
   }
 }
