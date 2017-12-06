@@ -7,9 +7,9 @@ information / data from the internet for improving official statistics.
 S4SDownloader is a nodejs package to conveniently download content from the internet specified by a list of urls.
 
 ## Installation
-Copy the file 'downloader-1.0.0.tgz' into your project directory and run:
+Copy the file 'downloader-1.0.1.tgz' into your project directory and run:
 
-`npm install downloader-1.0.0.tgz`
+`npm install downloader-1.0.1.tgz`
 
 
 ## Documentation

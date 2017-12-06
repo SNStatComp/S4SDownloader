@@ -41,7 +41,12 @@ class Download extends EventEmitter {
                         var result = data;
                         Promise.all([header]).then(
                             function(value, reason) {
-                                var ext = mime.extension(value[0]['content-type']);
+                                var ext = '';
+                                if (value[0]['content-type']) {
+                                    ext = mime.extension(value[0]['content-type']);
+                                } else {
+                                    ext = url.split('.').slice(-1)[0]
+                                }
                                 fileName = fileName + '.' + ext;
                                 fs.writeFileSync(fileName, result);
                                 resolve(fileName);
